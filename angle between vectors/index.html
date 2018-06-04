@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>rectExample</title>
+    <meta charset='utf-8' />
+    <script src="./functions.js"></script>
+
+    <link href='index.css' rel='stylesheet' type='text/css'>
+
+
+    <body>
+        <canvas id='project'>Угол между векторами</canvas>
+        <script>
+            var project = document.getElementById("project");
+            var ctx = project.getContext('2d');
+            project.width = 700;
+            project.height = 700;
+            var elemLeft = project.offsetLeft;
+            var elemTop = project.offsetTop;
+            project.addEventListener('mousedown', mouseDownEvent, false);
+            project.addEventListener('mousemove', mouseMoveEvent, false);
+            project.addEventListener('mouseup', mouseUpEvent, false);
+            var timerId = setInterval(refresh, 10);
+        </script>
+
+
+        <p></p>
+        A(<input type="text" size="3" id="firstX" oninput='inputValue("firstX")' value="100">,
+        <input type="text" size="3" id="firstY" oninput='inputValue("firstY")' value="100">),
+        &nbsp B(<input type="text" size="3" id="secondX" oninput='inputValue("secondX")' value="-100">,
+        <input type="text" size="3" id="secondY" oninput='inputValue("secondY")' value="100">)
+        &nbsp angle = <output id="angle"></output>
+    </body>
+
+</html>
