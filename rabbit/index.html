@@ -1,0 +1,308 @@
+<html>
+<head>
+    <title>Three.js Crash Course</title>
+    <style>
+        body {margin: 0;}
+        canvas {width: 100%;height: 100%;};
+    </style>
+    </head>
+</html>
+
+<body>
+    <script src="js/three.js"></script>
+<script src="js/OrbitControls.js"></script>
+    <script>
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight, 0.1, 1000);
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth,window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+    
+    window.addEventListener('resize', function()
+    {
+        var width = window.innerWidth;                    
+        var height = window.innerHeight;
+        renderer.setSize(width,height);
+        camera.aspect = width/height;
+        camera.updateProjectMatrix();
+    });
+    var axisHelper = new THREE.AxisHelper( 5 );
+    scene.add( axisHelper );
+    controls = new THREE.OrbitControls(camera,renderer.domElement); 
+    
+    var grid = new THREE.GridHelper( 20, 20 );
+    scene.add( grid );
+    
+    camera.position.z = 6;
+    camera.position.y = 2;
+//body
+    var geometry = new THREE.SphereGeometry( 2, 16, 16 );
+    var material = new THREE.MeshBasicMaterial( {color: 0x87CEFA, wireframe: false} );
+    var sphere = new THREE.Mesh( geometry, material );
+        scene.add( sphere );
+    sphere.position.set(0,2.82,0);
+        
+    var outlineMaterial = new THREE.MeshBasicMaterial( { color: 0x6495ED, side: THREE.BackSide } );
+outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
+outlineMesh.scale.multiplyScalar( 1.05 );
+sphere.add( outlineMesh );
+
+var geometryBlack = new THREE.SphereGeometry( 0.2, 16, 16 );//nos
+    var materialBlack = new THREE.MeshBasicMaterial( {color: 0xDB7093, wireframe: false} );
+    var sphere = new THREE.Mesh( geometryBlack, materialBlack );
+    scene.add( sphere );
+    sphere.position.set(0,3,2);
+
+    
+//brows
+//left
+var geometry = new THREE.BoxGeometry( 0.25, 0.75, 0.2 );
+var material = new THREE.MeshBasicMaterial( {color: 0x00008B} );
+var cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+cube.position.set(0.5,4.3,1.4);
+cube.rotation.z = -90;
+//right
+var cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+cube.position.set(-0.5,4.3,1.4);
+cube.rotation.z = 90;
+//left / right eyes
+        
+var geometryWhite = new THREE.SphereGeometry( 0.5, 16, 16 );
+    var materialWhite = new THREE.MeshBasicMaterial( {color: 0xffffff, wireframe: false} );
+    var sphere = new THREE.Mesh( geometryWhite, materialWhite );
+    scene.add( sphere );
+    sphere.position.set(0.5,3.5,1.7);
+        
+var geometryBlack = new THREE.SphereGeometry( 0.3, 16, 16 );
+    var materialBlack = new THREE.MeshBasicMaterial( {color: 0x000000, wireframe: false} );
+    var sphere = new THREE.Mesh( geometryBlack, materialBlack );
+    scene.add( sphere );
+    sphere.position.set(0.5,3.55,1.97);
+        
+        
+var geometrylittle = new THREE.SphereGeometry( 0.08, 16, 16);//littleeye
+    var materiallittle = new THREE.MeshBasicMaterial( {color: 0xffffff, wireframe: false} );
+    var sphere = new THREE.Mesh( geometrylittle, materiallittle );
+    scene.add( sphere );
+    sphere.position.set(0.5,3.6,2.2);
+        
+    var sphere = new THREE.Mesh( geometrylittle, materiallittle );
+    scene.add( sphere );
+    sphere.position.set(-0.5,3.6,2.2);
+//left        
+ var sphere = new THREE.Mesh( geometryWhite, materialWhite );
+    scene.add( sphere );
+    sphere.position.set(-0.5,3.5,1.7);
+
+var geometryBlack = new THREE.SphereGeometry( 0.3, 16, 16 );
+    var materialBlack = new THREE.MeshBasicMaterial( {color: 0x000000, wireframe: false} );
+    var sphere = new THREE.Mesh( geometryBlack, materialBlack );
+    scene.add( sphere );
+    sphere.position.set(-0.5,3.55,1.97);
+//rightfoot        
+    var geometry = new THREE.SphereBufferGeometry(1, 8, 8, 0, 2*Math.PI, 0, 0.5 * Math.PI);
+
+    var material = new THREE.MeshBasicMaterial( {color: 0x87CEFA, wireframe: false} );
+material.side = THREE.DoubleSide;
+mesh = new THREE.Mesh(geometry, material); 
+scene.add(mesh);
+mesh.position.set(1,0,0);
+        
+var outlineMaterial = new THREE.MeshBasicMaterial( { color: 0x6495ED, side: THREE.BackSide } );
+outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
+outlineMesh.scale.multiplyScalar( 1.05 );
+mesh.add( outlineMesh );
+
+        
+//leftfoot
+var geometry = new THREE.SphereBufferGeometry(1, 8, 8, 0, 2*Math.PI, 0, 0.5 * Math.PI);
+material.side = THREE.DoubleSide;
+mesh = new THREE.Mesh(geometry, material); 
+scene.add(mesh);
+mesh.position.set(-1,0,0);
+        
+var outlineMaterial = new THREE.MeshBasicMaterial( { color: 0x6495ED, side: THREE.BackSide } );
+outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
+outlineMesh.scale.multiplyScalar( 1.05 );
+mesh.add( outlineMesh );
+        
+//righthand
+var geometry = new THREE.SphereBufferGeometry(0.7, 8, 8, 0, 2*Math.PI, 0, 0.5 * Math.PI);
+material.side = THREE.DoubleSide;
+mesh = new THREE.Mesh(geometry, material); 
+scene.add(mesh);
+mesh.rotation.z=-Math.PI/2;
+mesh.position.set(1.8,3,0);
+        
+var outlineMaterial = new THREE.MeshBasicMaterial( { color: 0x6495ED, side: THREE.BackSide } );
+outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
+outlineMesh.scale.multiplyScalar( 1.05 );
+mesh.add( outlineMesh );
+        
+//lefthand
+var geometry = new THREE.SphereBufferGeometry(0.7, 8, 8, 0, 2*Math.PI, 0, 0.5 * Math.PI);
+material.side = THREE.DoubleSide;
+mesh = new THREE.Mesh(geometry, material); 
+scene.add(mesh);
+mesh.rotation.z=Math.PI/2;
+mesh.position.set(-1.8,3,0);
+        
+var outlineMaterial = new THREE.MeshBasicMaterial( { color: 0x6495ED, side: THREE.BackSide } );
+outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
+outlineMesh.scale.multiplyScalar( 1.05 );
+mesh.add( outlineMesh );
+
+        
+        
+        light = new THREE.AmbientLight(0xffffff,0.5);
+    light.position.set(-1,0,1);
+    scene.add(light);
+
+    var EllipseShape = new THREE.Shape();
+    var width = 20, height = 5;
+    (function Ellipse(ctx, x,y,w,h){
+     var kappa = 0.5522848;
+     ox = (w/2) * kappa,
+    oy = (h/2) * kappa,
+    xe = x+w,
+    ye = y+h,
+    xm = x + w/2,
+    ym = y+h/2;
+    ctx.moveTo(x,ym);
+    ctx.bezierCurveTo(x,ym-oy,xm-ox,y,xm,y);
+    ctx.bezierCurveTo(xm+ox,y,xe,ym-oy,xe,ym);
+    ctx.bezierCurveTo(xe,ym+oy,xm+ox,ye,xm,ye);
+    ctx.bezierCurveTo(xm-ox,ye,x,ym+oy,x,ym);
+        
+     })(EllipseShape, -width/2,-height/2,width,height);
+        
+    var extrudeSettings = {
+	steps: 2,
+	depth: 1,
+	bevelEnabled: true,
+	bevelThickness: 1,
+	bevelSize: 1,
+	bevelSegments: 1
+};
+    var geometry = new THREE.ExtrudeGeometry( EllipseShape, extrudeSettings );
+var material = new THREE.MeshBasicMaterial( { color: 0x87CEFA, wireframe: false } );
+var mesh = new THREE.Mesh( geometry, material ) ;//leftear
+scene.add( mesh );
+mesh.rotation.z= 300;
+mesh.scale.set(0.2,0.2,0.2);
+mesh.position.set(-1,6.3,0);
+var outlineMaterial = new THREE.MeshBasicMaterial( { color: 0x6495ED, side: THREE.BackSide } );
+outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
+outlineMesh.scale.multiplyScalar( 1.05 );
+        
+mesh.add( outlineMesh );
+        
+
+var mesh1 = new THREE.Mesh( geometry, material ) ; //rightear
+scene.add( mesh1 );
+mesh1.rotation.z= 300;
+mesh1.scale.set(0.2,0.2,0.2);
+mesh1.position.set(1,6.3,0);
+        
+var outlineMaterial = new THREE.MeshBasicMaterial( { color: 0x6495ED, side: THREE.BackSide } );
+outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
+outlineMesh.scale.multiplyScalar( 1.05 );
+mesh1.add( outlineMesh );
+        //0xDB7093
+
+//mouth
+var curve = new THREE.QuadraticBezierCurve3(
+	new THREE.Vector3( -1,2.8,1.76 ),
+	new THREE.Vector3( 0, 1.8, 2.1 ),
+	new THREE.Vector3( 1,2.8,1.76 )
+);
+
+var points = curve.getPoints( 100 );
+var geometry = new THREE.BufferGeometry().setFromPoints( points );
+
+var material = new THREE.LineBasicMaterial( { color : 0x6495ED, lineWidth: 100 } );
+var curveObject = new THREE.Line( geometry, material ); 
+scene.add(curveObject);
+        
+        
+//teeth
+var EllipseShape1 = new THREE.Shape();
+var width = 10, height = 5;
+    (function Ellipse(ctx, x,y,w,h){
+     var kappa = 0.5522848;
+     ox = (w/2) * kappa,
+    oy = (h/2) * kappa,
+    xe = x+w,
+    ye = y+h,
+    xm = x + w/2,
+    ym = y+h/2;
+    ctx.moveTo(x,ym);
+    ctx.bezierCurveTo(x,ym-oy,xm-ox,y,xm,y);
+    ctx.bezierCurveTo(xm+ox,y,xe,ym-oy,xe,ym);
+    ctx.bezierCurveTo(xe,ym+oy,xm+ox,ye,xm,ye);
+    ctx.bezierCurveTo(xm-ox,ye,x,ym+oy,x,ym);
+        
+     })(EllipseShape1, -width/2,-height/2,width,height);
+        
+    var extrudeSettings = {
+	steps: 2,
+	depth: 1,
+	bevelEnabled: true,
+	bevelThickness: 1,
+	bevelSize: 1,
+	bevelSegments: 1
+};
+    
+geometry = new THREE.ExtrudeGeometry( EllipseShape1, extrudeSettings );
+var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: false } );
+var mesh = new THREE.Mesh( geometry, material ) ;//leftooth
+scene.add( mesh );
+mesh.rotation.z= 300;
+mesh.rotation.x= -60;
+mesh.scale.set(0.05,0.05,0.05);
+mesh.position.set(-0.2,2.2,1.87);
+    
+var outlineMaterial = new THREE.MeshBasicMaterial( { color: 0x6495ED, side: THREE.BackSide } );
+outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
+outlineMesh.scale.multiplyScalar( 1.05 );
+mesh.add( outlineMesh );
+
+        
+geometry = new THREE.ExtrudeGeometry( EllipseShape1, extrudeSettings );
+var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: false } );
+var mesh = new THREE.Mesh( geometry, material ) ;//righttooth
+scene.add( mesh );
+mesh.rotation.z= 300;
+mesh.rotation.x= -60;
+mesh.scale.set(0.05,0.05,0.05);
+mesh.position.set(0.09,2.3,1.85);
+mesh.scale.multiplyScalar(0.9);
+        
+var outlineMaterial = new THREE.MeshBasicMaterial( { color: 0x6495ED, side: THREE.BackSide } );
+outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
+outlineMesh.scale.multiplyScalar( 1.05 );
+mesh.add( outlineMesh );
+
+        
+    var update = function()
+    {
+        //cube.rotation.x+=0.01;
+        //cube.rotation.y+=0.01;
+    };
+        
+    var render = function()
+    {
+        renderer.render(scene,camera);
+    };
+    
+    var loop = function()
+    {
+        requestAnimationFrame(loop);
+        update();
+        render();
+    };
+        loop();
+    </script>
+</body>

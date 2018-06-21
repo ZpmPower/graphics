@@ -1,0 +1,162 @@
+<html>
+<head>
+    <title>Three.js Crash Course</title>
+    <style>
+        body {margin: 0;}
+        canvas {width: 100%;height: 100%;};
+    </style>
+    </head>
+</html>
+
+<body>
+    <script src="js/three.js"></script>
+<script src="js/OrbitControls.js"></script>
+    <script>
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight, 0.1, 1000);
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth,window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+    
+    window.addEventListener('resize', function()
+    {
+        var width = window.innerWidth;                    
+        var height = window.innerHeight;
+        renderer.setSize(width,height);
+        camera.aspect = width/height;
+        camera.updateProjectMatrix();
+    });
+    var axisHelper = new THREE.AxisHelper( 5 );
+    scene.add( axisHelper );
+    controls = new THREE.OrbitControls(camera,renderer.domElement); 
+    
+    var grid = new THREE.GridHelper( 20, 20 );
+    scene.add( grid );
+    var geometry = new THREE.BoxGeometry(1,1,1);
+    var cubeMaterials =
+    [
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/brick.jpg'), side: THREE.DoubleSide} ), //right
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/brick.jpg'), side: THREE.DoubleSide} ),//left
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/brick.jpg'), side: THREE.DoubleSide} ),//top
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/brick.jpg'), side: THREE.DoubleSide} ),//bottom
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/brick.jpg'), side: THREE.DoubleSide} ),//front
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/brick.jpg'), side: THREE.DoubleSide} )//back
+    ];
+    var material = new THREE.MeshFaceMaterial(cubeMaterials);
+    var cube = new THREE.Mesh(geometry,material);
+    scene.add(cube);    
+    cube.position.set(0,0.5,0);
+    camera.position.z = 6;
+    camera.position.y = 2;
+        
+    var geometryDoor = new THREE.BoxGeometry( 0.4, 0.75, 0.01 ); //door
+    var doorMaterials =
+    [
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} ), //right
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} ),//left
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} ),//top
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} ),//bottom
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} ),//front
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} )//back
+    ];
+    var materialDoor = new THREE.MeshFaceMaterial( doorMaterials );
+    var door = new THREE.Mesh( geometryDoor, materialDoor );
+    scene.add( door );
+    door.position.set(0,0.38,0.5);
+        
+    var geometryWindow = new THREE.BoxGeometry( 0.4, 0.4, 0.01 ); //window
+    var windowMaterials =
+    [
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ), //right
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ),//top
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ),//left
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ),//bottom
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ),//front
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} )//back
+    ];
+    var materialWindow = new THREE.MeshFaceMaterial( windowMaterials );
+    var window1 = new THREE.Mesh( geometryWindow, materialWindow );
+    scene.add( window1 );
+    window1.rotation.y=Math.PI/2;
+    window1.position.set(-0.5,0.5,0);
+    
+var geometryRoof = new THREE.CylinderGeometry( 0.3, 0.95, 1.1, 4 );
+var roofMaterials =
+    [
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ), //right
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ),//top
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ),//left
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ),//bottom
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ),//front
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} )//back
+    ];
+var materialRoof = new THREE.MeshFaceMaterial(roofMaterials);
+var cylinder = new THREE.Mesh( geometryRoof, materialRoof );
+this.scene.add( cylinder );
+cylinder.position.set(0,1.40,0);
+cylinder.rotation.y=Math.PI/4;
+        
+var geometryСhimney = new THREE.BoxGeometry( 0.17, 0.4, 0.15 ); //dymohod
+    var chimneyMaterials =
+    [
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ), //right
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ),//left
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ),//top
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ),//bottom
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ),//front
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} )//back
+    ];
+    var materialСhimney = new THREE.MeshFaceMaterial( chimneyMaterials );
+    var сhimney = new THREE.Mesh( geometryСhimney, materialСhimney );
+    scene.add( сhimney );
+    сhimney.position.set(-0.34,1.6,0);
+
+        
+        
+        light = new THREE.DirectionalLight(0xffffff,0.5);
+    light.position.set(-1,0,1);
+    scene.add(light);
+        
+        
+         clock = new THREE.Clock();
+        smokeTexture = THREE.ImageUtils.loadTexture('https://s3-us-west-2.amazonaws.com/s.cdpn.io/95637/Smoke-Element.png');
+    smokeMaterial = new THREE.MeshLambertMaterial({color: 0x00dddd, map: smokeTexture, transparent: true});
+    smokeGeo = new THREE.PlaneGeometry(300,300);
+    smokeParticles = [];
+       for (p = 0; p < 150; p++) {
+        var particle = new THREE.Mesh(smokeGeo,smokeMaterial);
+        particle.position.set(Math.random()*500-250,Math.random()*500-250,Math.random()*1000-100);
+        particle.rotation.z = Math.random() * 360;
+        scene.add(particle);
+        smokeParticles.push(particle);
+    } 
+        
+        
+    var update = function()
+    {
+        delta = clock.getDelta();
+        evolveSmoke();
+        //cube.rotation.x+=0.01;
+        //cube.rotation.y+=0.01;
+    };
+        
+    var render = function()
+    {
+        renderer.render(scene,camera);
+    };
+    
+    var loop = function()
+    {
+        requestAnimationFrame(loop);
+        update();
+        render();
+    };
+    function evolveSmoke() {
+    var sp = smokeParticles.length;
+    while(sp--) {
+        smokeParticles[sp].rotation.z += (delta * 0.2);
+    }
+}
+        loop();
+    </script>
+</body>
