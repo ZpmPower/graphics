@@ -252,7 +252,7 @@
             var sideWing = new THREE.Mesh(geomSideWing, matSideWing);
             sideWing.castShadow = true;
             sideWing.receiveShadow = true;
-            sideWing.rotation.z = -Math.PI/25;
+            //sideWing.rotation.z = -Math.PI/25;
             sideWing.position.y-=15;
             sideWing.position.x+=15;
             this.mesh.add(sideWing);
@@ -266,13 +266,50 @@
             var sideWing = new THREE.Mesh(geomSideWing, matSideWing);
             sideWing.castShadow = true;
             sideWing.receiveShadow = true;
-            sideWing.rotation.z = Math.PI/25;
-            sideWing.position.y+=15;
+            //sideWing.rotation.z = Math.PI/25;
+            sideWing.position.y+=40;
             sideWing.position.x+=15;
             this.mesh.add(sideWing);
 
             this.propeller = new createPropeller().propeller;
             this.mesh.add(this.propeller);
+            
+            //wing's connectors 
+            //left 
+            var geomCockpit = new THREE.CylinderGeometry(5, 5, 60, 30);
+            var matCockpit = new THREE.MeshPhongMaterial({
+                color: Colors.red,
+                shading: THREE.FlatShading
+            });
+            var cockpit = new THREE.Mesh(geomCockpit, matCockpit);
+            cockpit.castShadow = true;
+            cockpit.receiveShadow = true;
+            cockpit.position.z-=80;
+            cockpit.position.y+=12;
+            this.mesh.add(cockpit);
+            //left+1
+            var cockpit = new THREE.Mesh(geomCockpit, matCockpit);
+            cockpit.castShadow = true;
+            cockpit.receiveShadow = true;
+            cockpit.position.z-=80;
+            cockpit.position.y+=12;
+            cockpit.position.x+=30;
+            this.mesh.add(cockpit);
+            //right
+            var cockpit = new THREE.Mesh(geomCockpit, matCockpit);
+            cockpit.castShadow = true;
+            cockpit.receiveShadow = true;
+            cockpit.position.z+=80;
+            cockpit.position.y+=12;
+            this.mesh.add(cockpit);
+
+            var cockpit = new THREE.Mesh(geomCockpit, matCockpit);
+            cockpit.castShadow = true;
+            cockpit.receiveShadow = true;
+            cockpit.position.z+=80;
+            cockpit.position.y+=12;
+            cockpit.position.x+=30;
+            this.mesh.add(cockpit);
 
 //            this.leftPropeller = new createPropeller().propeller;
 //            this.leftPropeller.position.set(30, 0, 95);
