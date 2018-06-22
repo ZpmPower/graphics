@@ -111,26 +111,27 @@ var geometryСhimney = new THREE.BoxGeometry( 0.17, 0.4, 0.15 ); //dymohod
     scene.add( сhimney );
     сhimney.position.set(-0.34,1.6,0);
         
-// var count = 0;  
-//document.addEventListener("keydown", onDocumentKeyDown);
-//function onDocumentKeyDown(event) {
-//    var keyCode = event.which;
-//    if (keyCode == 32) {
-//        if(count%2==0) 
-//        {
-//            door.rotation.y =Math.PI/2;
-//            door.position.x+= 0.2 ;
-//            door.position.z+= 0.2;
-//        }
-//        else 
-//        {
-//            door.rotation.y = 0;
-//            door.position.x = 0;
-//            door.position.z = 0.5;
-//        }
-//        count++;
-//    }
-//};
+ var count = new Boolean(false);  
+document.addEventListener("keydown", onDocumentKeyDown);
+function onDocumentKeyDown(event) {
+    var keyCode = event.which;
+    if (keyCode == 32) {
+        if(count==false) 
+        {
+            door.rotation.y =Math.PI/2;
+            door.position.x+= 0.2 ;
+            door.position.z+= 0.2;
+            count=true;
+        }
+        else 
+        {
+            door.rotation.y = 0;
+            door.position.x = 0;
+            door.position.z = 0.5;
+            count=false;
+        }
+    }
+};
         
     var update = function()
     {
