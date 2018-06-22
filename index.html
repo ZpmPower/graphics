@@ -80,37 +80,37 @@
     window1.rotation.y=Math.PI/2;
     window1.position.set(-0.5,0.5,0);
     
-//var geometryRoof = new THREE.CylinderGeometry( 0.3, 0.95, 1.1, 4 );
-//var roofMaterials =
-//    [
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ), //right
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ),//top
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ),//left
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ),//bottom
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ),//front
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} )//back
-//    ];
-//var materialRoof = new THREE.MeshFaceMaterial(roofMaterials);
-//var cylinder = new THREE.Mesh( geometryRoof, materialRoof );
-//this.scene.add( cylinder );
-//cylinder.position.set(0,1.40,0);
-//cylinder.rotation.y=Math.PI/4;
-//        
-//var geometryСhimney = new THREE.BoxGeometry( 0.17, 0.4, 0.15 ); //dymohod
-//    var chimneyMaterials =
-//    [
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ), //right
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ),//left
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ),//top
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ),//bottom
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ),//front
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} )//back
-//    ];
-//    var materialСhimney = new THREE.MeshFaceMaterial( chimneyMaterials );
-//    var сhimney = new THREE.Mesh( geometryСhimney, materialСhimney );
-//    scene.add( сhimney );
-//    сhimney.position.set(-0.34,1.6,0);
-//        
+var geometryRoof = new THREE.CylinderGeometry( 0.3, 0.95, 1.1, 4 );
+var roofMaterials =
+    [
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ), //right
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ),//top
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ),//left
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ),//bottom
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} ),//front
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/roof.jpg'), side: THREE.DoubleSide} )//back
+    ];
+var materialRoof = new THREE.MeshFaceMaterial(roofMaterials);
+var cylinder = new THREE.Mesh( geometryRoof, materialRoof );
+this.scene.add( cylinder );
+cylinder.position.set(0,1.40,0);
+cylinder.rotation.y=Math.PI/4;
+        
+var geometryСhimney = new THREE.BoxGeometry( 0.17, 0.4, 0.15 ); //dymohod
+    var chimneyMaterials =
+    [
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ), //right
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ),//left
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ),//top
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ),//bottom
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} ),//front
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/stone.jpg'), side: THREE.DoubleSide} )//back
+    ];
+    var materialСhimney = new THREE.MeshFaceMaterial( chimneyMaterials );
+    var сhimney = new THREE.Mesh( geometryСhimney, materialСhimney );
+    scene.add( сhimney );
+    сhimney.position.set(-0.34,1.6,0);
+        
 // var count = 0;  
 //document.addEventListener("keydown", onDocumentKeyDown);
 //function onDocumentKeyDown(event) {
