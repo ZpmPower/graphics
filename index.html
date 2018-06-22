@@ -151,20 +151,20 @@ scene.add( cylinder );
 cylinder.position.set(0.37,5.1,0);
 cylinder.rotation.z=-Math.PI/4;
 
-//var geometry = new THREE.BoxGeometry(3/2,3/2,0.1);
-//var cubeMaterials =
-//    [
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/TV.jpg'), side: THREE.DoubleSide} ), //right
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/TV.jpg'), side: THREE.DoubleSide} ),//top
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/TV.jpg'), side: THREE.DoubleSide} ),//left
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/TV.jpg'), side: THREE.DoubleSide} ),//bottom
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/TV.jpg'), side: THREE.DoubleSide} ),//front
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/TV.jpg'), side: THREE.DoubleSide} )//back
-//    ];
-//    var material = new THREE.MeshFaceMaterial(cubeMaterials);
-//    var cube = new THREE.Mesh(geometry,material);
-//    scene.add(cube);    
-//    cube.position.set(0,2.5,1.5);
+var geometry = new THREE.BoxGeometry(3/2,3/2,0.1);
+var cubeMaterials =
+    [
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/TV.jpg'), side: THREE.DoubleSide} ), //right
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/TV.jpg'), side: THREE.DoubleSide} ),//top
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/TV.jpg'), side: THREE.DoubleSide} ),//left
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/TV.jpg'), side: THREE.DoubleSide} ),//bottom
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/TV.jpg'), side: THREE.DoubleSide} ),//front
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/TV.jpg'), side: THREE.DoubleSide} )//back
+    ];
+    var material = new THREE.MeshFaceMaterial(cubeMaterials);
+    var cube = new THREE.Mesh(geometry,material);
+    scene.add(cube);    
+    cube.position.set(0,2.5,1.5);
         
         
         
