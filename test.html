@@ -142,16 +142,24 @@
 
             // Создаем лопасть
             var geomBlade = new THREE.BoxGeometry(1, 100, 20, 1, 1, 1);
+            var geomBlade2 = new THREE.BoxGeometry(1, 100, 20, 1, 1, 1);
             var matBlade = new THREE.MeshPhongMaterial({
                 color: Colors.brownDark,
                 shading: THREE.FlatShading
             });
 
             var blade = new THREE.Mesh(geomBlade, matBlade);
+            var blade2 = new THREE.Mesh(geomBlade, matBlade);
             blade.position.set(8, 0, 0);
             blade.castShadow = true;
             blade.receiveShadow = true;
+            
+            blade2.position.set(8, 0, 0);
+            blade2.castShadow = true;
+            blade2.receiveShadow = true;
+            blade2.rotation.x=Math.PI/2;
             this.propeller.add(blade);
+            this.propeller.add(blade2);
             this.propeller.position.set(115, 0, 0);
         }
 
@@ -332,7 +340,7 @@
         }
 
         function loop() {
-            //airplane.propeller.rotation.x += 0.3;
+            airplane.propeller.rotation.x += 0.3;
             airplane.mesh.rotation.x += rotationX;
             airplane.mesh.rotation.y += rotationY;
             airplane.mesh.rotation.z += rotationZ;
