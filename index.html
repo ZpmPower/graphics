@@ -52,60 +52,60 @@ outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
 outlineMesh.scale.multiplyScalar( 1.05 );
 sphere.add( outlineMesh );
 
-//var geometryBlack = new THREE.SphereGeometry( 0.2, 16, 16 );//nos
-//    var materialBlack = new THREE.MeshLambertMaterial( {color: 0xDB7093, wireframe: false} );
-//    var sphere = new THREE.Mesh( geometryBlack, materialBlack );
-//    scene.add( sphere );
-//    sphere.position.set(0,3,2);
+var geometryBlack = new THREE.SphereGeometry( 0.2, 16, 16 );//nos
+    var materialBlack = new THREE.MeshLambertMaterial( {color: 0xDB7093, wireframe: false} );
+    var sphere = new THREE.Mesh( geometryBlack, materialBlack );
+    scene.add( sphere );
+    sphere.position.set(0,3,2);
 
     
 //brows
 //left
-//var geometry = new THREE.BoxGeometry( 0.25, 0.75, 0.2 );
-//var material = new THREE.MeshLambertMaterial( {color: 0x00008B} );
-//var cube = new THREE.Mesh( geometry, material );
-//scene.add( cube );
-//cube.position.set(0.5,4.3,1.4);
-//cube.rotation.z = -90;
-////right
-//var cube = new THREE.Mesh( geometry, material );
-//scene.add( cube );
-//cube.position.set(-0.5,4.3,1.4);
-//cube.rotation.z = 90;
-////left / right eyes
-//        
-//var geometryWhite = new THREE.SphereGeometry( 0.5, 16, 16 );
-//    var materialWhite = new THREE.MeshLambertMaterial( {color: 0xffffff, wireframe: false} );
-//    var sphere = new THREE.Mesh( geometryWhite, materialWhite );
-//    scene.add( sphere );
-//    sphere.position.set(0.5,3.5,1.7);
-//        
-//var geometryBlack = new THREE.SphereGeometry( 0.3, 16, 16 );
-//    var materialBlack = new THREE.MeshLambertMaterial( {color: 0x000000, wireframe: false} );
-//    var sphere = new THREE.Mesh( geometryBlack, materialBlack );
-//    scene.add( sphere );
-//    sphere.position.set(0.5,3.55,1.97);
-//        
-//        
-//var geometrylittle = new THREE.SphereGeometry( 0.08, 16, 16);//littleeye
-//    var materiallittle = new THREE.MeshLambertMaterial( {color: 0xffffff, wireframe: false} );
-//    var sphere = new THREE.Mesh( geometrylittle, materiallittle );
-//    scene.add( sphere );
-//    sphere.position.set(0.5,3.6,2.2);
-//        
-//    var sphere = new THREE.Mesh( geometrylittle, materiallittle );
-//    scene.add( sphere );
-//    sphere.position.set(-0.5,3.6,2.2);
-////left        
-// var sphere = new THREE.Mesh( geometryWhite, materialWhite );
-//    scene.add( sphere );
-//    sphere.position.set(-0.5,3.5,1.7);
+var geometry = new THREE.BoxGeometry( 0.25, 0.75, 0.2 );
+var material = new THREE.MeshLambertMaterial( {color: 0x00008B} );
+var cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+cube.position.set(0.5,4.3,1.4);
+cube.rotation.z = -90;
+//right
+var cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+cube.position.set(-0.5,4.3,1.4);
+cube.rotation.z = 90;
+//left / right eyes
+        
+var geometryWhite = new THREE.SphereGeometry( 0.5, 16, 16 );
+    var materialWhite = new THREE.MeshLambertMaterial( {color: 0xffffff, wireframe: false} );
+    var sphere = new THREE.Mesh( geometryWhite, materialWhite );
+    scene.add( sphere );
+    sphere.position.set(0.5,3.5,1.7);
+        
+var geometryBlack = new THREE.SphereGeometry( 0.3, 16, 16 );
+    var materialBlack = new THREE.MeshLambertMaterial( {color: 0x000000, wireframe: false} );
+    var sphere = new THREE.Mesh( geometryBlack, materialBlack );
+    scene.add( sphere );
+    sphere.position.set(0.5,3.55,1.97);
+        
+        
+var geometrylittle = new THREE.SphereGeometry( 0.08, 16, 16);//littleeye
+    var materiallittle = new THREE.MeshLambertMaterial( {color: 0xffffff, wireframe: false} );
+    var sphere = new THREE.Mesh( geometrylittle, materiallittle );
+    scene.add( sphere );
+    sphere.position.set(0.5,3.6,2.2);
+        
+    var sphere = new THREE.Mesh( geometrylittle, materiallittle );
+    scene.add( sphere );
+    sphere.position.set(-0.5,3.6,2.2);
+//left        
+ var sphere = new THREE.Mesh( geometryWhite, materialWhite );
+    scene.add( sphere );
+    sphere.position.set(-0.5,3.5,1.7);
 
-//var geometryBlack = new THREE.SphereGeometry( 0.3, 16, 16 );
-//    var materialBlack = new THREE.MeshLambertMaterial( {color: 0x000000, wireframe: false} );
-//    var sphere = new THREE.Mesh( geometryBlack, materialBlack );
-//    scene.add( sphere );
-//    sphere.position.set(-0.5,3.55,1.97);
+var geometryBlack = new THREE.SphereGeometry( 0.3, 16, 16 );
+    var materialBlack = new THREE.MeshLambertMaterial( {color: 0x000000, wireframe: false} );
+    var sphere = new THREE.Mesh( geometryBlack, materialBlack );
+    scene.add( sphere );
+    sphere.position.set(-0.5,3.55,1.97);
 //rightfoot        
     var geometry = new THREE.SphereBufferGeometry(1, 8, 8, 0, 2*Math.PI, 0, 0.5 * Math.PI);
 
