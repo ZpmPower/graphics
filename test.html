@@ -1,0 +1,403 @@
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0;
+        }
+        
+        canvas {
+            width: 100%;
+            height: 100%
+        }
+    </style>
+</head>
+
+<body>
+    <script src="js/three.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <div id="world"></div>
+    <script>
+        var rotationX = 0,
+            rotationY = 0,
+            rotationZ = 0;
+
+        function rotateAirPlaneLeftRight(A) {
+            var geometry = airplane.mesh;
+
+            var mRotate = new THREE.Matrix4();
+            var cA = Math.cos(A);
+            var sA = Math.sin(A);
+            mRotate.set(cA, 0, -sA, 0,
+                0, 1, 0, 0,
+                sA, 0, cA, 0,
+                0, 0, 0, 1);
+            if (geometry != undefined) {
+                //geometry.applyMatrix(mRotate);
+                geometry.rotation.x += rotationX;
+            }
+        }
+
+        function rotateAirPlaneTopDown(A) {
+            var geometry = airplane.mesh;
+
+            var mRotate = new THREE.Matrix4();
+            var cA = Math.cos(A);
+            var sA = Math.sin(A);
+            mRotate.set(cA, sA, 0, 0, -sA, cA, 0, 0,
+                0, 0, 1, 0,
+                0, 0, 0, 1);
+            //alert(gerHouse);
+            if (geometry != undefined) {
+                //geometry.applyMatrix(mRotate);
+                geometry.rotation.y += rotationY;
+
+            }
+        }
+
+        var scene,
+            camera, fieldOfView, aspectRatio, nearPlane, farPlane, HEIGHT, WIDTH,
+            renderer, container;
+
+        function createScene() {
+            // Получаем ширину и высоту рабочей области
+            // используем их для установки размера и пропорций камеры
+            // а также для размера финального рендера
+            HEIGHT = window.innerHeight;
+            WIDTH = window.innerWidth;
+
+            // Создание сцены
+            scene = new THREE.Scene();
+
+            // Добавить эффект тумана на нашу сцену
+            // его цвет мы возьмем из наших таблиц стилей, а не из переменной
+            scene.fog = new THREE.Fog(0xf7d9aa, 100, 950);
+
+            // Создадим камеру
+            aspectRatio = WIDTH / HEIGHT;
+            fieldOfView = 60;
+            nearPlane = 1;
+            farPlane = 10000;
+            camera = new THREE.PerspectiveCamera(
+                fieldOfView,
+                aspectRatio,
+                nearPlane,
+                farPlane
+            );
+
+            // Зададим позицию камере в пространстве
+            camera.position.x = 0;
+            camera.position.z = 200;
+            camera.position.y = 100;
+
+            // Создадим рендер
+            renderer = new THREE.WebGLRenderer({
+                alpha: true,
+                antialias: true
+            });
+
+            // Задаем размер рендеру,
+            // в нашем случае это размер рабочей области
+            renderer.setSize(WIDTH, HEIGHT);
+
+            // Включаем рендер теней
+            renderer.shadowMap.enabled = true;
+
+            // Обратимся к DOM-элементу,
+            // который создали в HTML, для рендера в него сцены.
+            container = document.getElementById('world');
+            container.appendChild(renderer.domElement);
+
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableKeys = (false);
+
+            var axesHelper = new THREE.AxesHelper(225);
+            scene.add(axesHelper);
+        }
+
+        var hemisphereLight, shadowLight;
+
+        function createPropeller() {
+            // Создаем пропеллер
+            var geomPropeller = new THREE.BoxGeometry(20, 8, 8, 1, 1, 1);
+            var matPropeller = new THREE.MeshPhongMaterial({
+                color: Colors.brown,
+                shading: THREE.FlatShading
+            });
+            this.propeller = new THREE.Mesh(geomPropeller, matPropeller);
+            this.propeller.castShadow = true;
+            this.propeller.receiveShadow = true;
+            this.propeller.position.x = 170;
+
+            var geomPropeller = new THREE.BoxGeometry(20, 10, 10, 1, 1, 1);
+            var matPropeller = new THREE.MeshPhongMaterial({
+                color: Colors.brown,
+                shading: THREE.FlatShading
+            });
+            this.propeller = new THREE.Mesh(geomPropeller, matPropeller);
+            this.propeller.castShadow = true;
+            this.propeller.receiveShadow = true;
+            this.propeller.position.x = 170;
+
+            // Создаем лопасть
+            var geomBlade = new THREE.BoxGeometry(1, 100, 20, 1, 1, 1);
+            var matBlade = new THREE.MeshPhongMaterial({
+                color: Colors.brownDark,
+                shading: THREE.FlatShading
+            });
+
+            var blade = new THREE.Mesh(geomBlade, matBlade);
+            blade.position.set(8, 0, 0);
+            blade.castShadow = true;
+            blade.receiveShadow = true;
+            this.propeller.add(blade);
+            this.propeller.position.set(115, 0, 0);
+        }
+
+        function createLights() {
+            // Полушарный свет - это градиентный свет
+            // первый параметр это цвет неба, второй параметр - цвет земли,
+            // третий параметр - интенсивность света
+            hemisphereLight = new THREE.HemisphereLight(0xaaaaaa, 0x000000, .9)
+
+            // Направленный свет светит в определенном направлении из точки,
+            // это работает как солнце, что значит что продуцируемые лучи параллельны.
+            shadowLight = new THREE.DirectionalLight(0xffffff, .9);
+
+            // Устанавливаем направление света
+            shadowLight.position.set(150, 350, 350);
+
+            // Разрешаем отбрасывание теней
+            shadowLight.castShadow = true;
+
+            // Определяем видимую область теней
+            shadowLight.shadow.camera.left = -400;
+            shadowLight.shadow.camera.right = 400;
+            shadowLight.shadow.camera.top = 400;
+            shadowLight.shadow.camera.bottom = -400;
+            shadowLight.shadow.camera.near = 1;
+            shadowLight.shadow.camera.far = 1000;
+
+            // Задайте разрешение теней,
+            // но имейте ввиду, чем оно больше, тем ниже производительность.
+            shadowLight.shadow.mapSize.width = 2048;
+            shadowLight.shadow.mapSize.height = 2048;
+
+            // Добавляем наше освещение на сцену
+            scene.add(hemisphereLight);
+            scene.add(shadowLight);
+        }
+
+        var AirPlane = function() {
+
+            this.mesh = new THREE.Object3D();
+
+            var geomCockpit = new THREE.CylinderGeometry(10, 40, 200, 4);
+            var matCockpit = new THREE.MeshPhongMaterial({
+                color: Colors.red,
+                shading: THREE.FlatShading
+            });
+            var cockpit = new THREE.Mesh(geomCockpit, matCockpit);
+            cockpit.castShadow = true;
+            cockpit.receiveShadow = true;
+            cockpit.rotation.z = Math.PI/2;
+            cockpit.rotation.x = Math.PI/4;
+            cockpit.scale.set(1.2,1.2,1.2);
+            this.mesh.add(cockpit);
+
+            // Создаем двигатель
+            var geomEngine = new THREE.BoxGeometry(20, 40, 40, 1, 1, 1);
+            var matEngine = new THREE.MeshPhongMaterial({
+                color: Colors.white,
+                shading: THREE.FlatShading
+            });
+            var engine = new THREE.Mesh(geomEngine, matEngine);
+            engine.position.x = 110;
+            engine.castShadow = true;
+            engine.receiveShadow = true;
+            this.mesh.add(engine);
+
+            // Создаем хвост1
+//            var geomTailPlane = new THREE.BoxGeometry(25, 40, 5, 1, 1, 1);
+//            var matTailPlane = new THREE.MeshPhongMaterial({
+//                color: Colors.red,
+//                shading: THREE.FlatShading
+//            });
+//            var tailPlane = new THREE.Mesh(geomTailPlane, matTailPlane);
+//            tailPlane.position.set(-100, 25, 0);
+//            tailPlane.castShadow = true;
+//            tailPlane.receiveShadow = true;
+//            this.mesh.add(tailPlane);
+//            //хвост2
+//            var geomTailPlane = new THREE.BoxGeometry(25, 75, 10, 1, 1, 1);
+//            var matTailPlane = new THREE.MeshPhongMaterial({
+//                color: Colors.red,
+//                shading: THREE.FlatShading
+//            });
+//            var tailPlane = new THREE.Mesh(geomTailPlane, matTailPlane);
+//            tailPlane.position.set(-100, 25, 0);
+//            tailPlane.castShadow = true;
+//            tailPlane.receiveShadow = true;
+//            tailPlane.rotation.x=Math.PI/2;
+//            tailPlane.position.y-=25;
+//            this.mesh.add(tailPlane);
+            
+            // Создаем крыло 1
+//            var geomSideWing = new THREE.BoxGeometry(50, 8, 300, 1, 1, 1);
+//            var matSideWing = new THREE.MeshPhongMaterial({
+//                color: Colors.brown,
+//                shading: THREE.FlatShading
+//            });
+//            var sideWing = new THREE.Mesh(geomSideWing, matSideWing);
+//            sideWing.castShadow = true;
+//            sideWing.receiveShadow = true;
+//            sideWing.rotation.z = -Math.PI/25;
+//            sideWing.position.y-=15;
+//            sideWing.position.x+=15;
+//            this.mesh.add(sideWing);
+            
+            // Создаем крыло 2
+            var geomSideWing = new THREE.BoxGeometry(50, 8, 300, 1, 1, 1);
+            var matSideWing = new THREE.MeshPhongMaterial({
+                color: Colors.brown,
+                shading: THREE.FlatShading
+            });
+            var sideWing = new THREE.Mesh(geomSideWing, matSideWing);
+            sideWing.castShadow = true;
+            sideWing.receiveShadow = true;
+            sideWing.rotation.z = Math.PI/25;
+            sideWing.position.y+=15;
+            sideWing.position.x+=15;
+            this.mesh.add(sideWing);
+
+            this.propeller = new createPropeller().propeller;
+            this.mesh.add(this.propeller);
+
+//            this.leftPropeller = new createPropeller().propeller;
+//            this.leftPropeller.position.set(30, 0, 95);
+//            this.leftPropeller.scale.set(0.65, 0.65, 0.65);
+//            this.mesh.add(this.leftPropeller);
+//
+//            this.rightPropeller = new createPropeller().propeller;
+//            this.rightPropeller.position.set(30, 0, -95);
+//            this.rightPropeller.scale.set(0.65, 0.65, 0.65);
+//            this.mesh.add(this.rightPropeller);
+
+            var geomCabin = new THREE.BoxGeometry(40, 25, 35, 1, 1, 1);
+            var matCabin = new THREE.MeshPhongMaterial({
+                color: Colors.blue,
+                shading: THREE.FlatShading
+            });
+            var cabin = new THREE.Mesh(geomCabin, matCabin);
+            cabin.castShadow = true;
+            cabin.receiveShadow = true;
+            cabin.position.set(40, 35, 0);
+            this.mesh.add(cabin);
+        };
+
+        var airplane;
+
+        function createPlane() {
+            airplane = new AirPlane();
+            airplane.mesh.scale.set(.25, .25, .25);
+            airplane.mesh.position.set(0, 0, 0);
+            scene.add(airplane.mesh);
+        }
+
+        function loop() {
+            // Вращаем пропеллер, море и небо
+            airplane.propeller.rotation.x += 0.3;
+            //airplane.leftPropeller.rotation.x += 0.3;
+            //airplane.rightPropeller.rotation.x += 0.3;
+            airplane.mesh.rotation.x += rotationX;
+            airplane.mesh.rotation.y += rotationY;
+            // рендерим сцену
+
+            //rotateAirPlaneLeftRight(0);
+            //rotateAirPlaneTopDown(0);
+            renderer.render(scene, camera);
+
+            // снова вызываем фунцию loop
+
+            requestAnimationFrame(loop);
+        }
+
+        var Colors = {
+            red: 0xf25346,
+            white: 0xd8d0d1,
+            brown: 0x59332e,
+            pink: 0xF5986E,
+            brownDark: 0x23190f,
+            blue: 0x68c3c0,
+        };
+
+        function init() {
+            // настройка сцены, камеры и рендера
+            createScene();
+
+            // добавление освещения сцены
+            createLights();
+
+            // добавление объектов на сцену
+            createPlane();
+
+            // запускаем цикл для обновления объектов на сцене
+            // и перерасчет сцены в каждом кадре
+            loop();
+
+
+        }
+
+        function onKeyDown(e) {
+            switch (e.keyCode) {
+
+                case 37: // если нажата клавиша влево
+                    //rotateAirPlaneLeftRight(-0.05);
+                    rotationX = -0.05;
+                    break;
+                case 38: // если нажата клавиша вверх
+                    //rotateAirPlaneTopDown(0.05);
+                    rotationY = 0.05;
+                    break;
+                case 39: // если нажата клавиша вправо
+                    //rotateAirPlaneLeftRight(0.05);
+                    rotationX = 0.05;
+                    break;
+                case 40: // если нажата клавиша вниз
+                    //rotateAirPlaneTopDown(-0.05);
+                    rotationY = -0.05;
+                    break;
+            }
+        }
+
+        function onKeyUp(e) {
+            switch (e.keyCode) {
+
+                case 37: // если нажата клавиша влево
+                    //rotateAirPlaneLeftRight(-0.05);
+                    rotationX = 0;
+                    break;
+                case 38: // если нажата клавиша вверх
+                    //rotateAirPlaneTopDown(0.05);
+                    rotationY = 0;
+                    break;
+                case 39: // если нажата клавиша вправо
+                    //rotateAirPlaneLeftRight(0.05);
+                    rotationX = 0;
+                    break;
+                case 40: // если нажата клавиша вниз
+                    //rotateAirPlaneTopDown(-0.05);
+                    rotationY = 0;
+                    break;
+            }
+        }
+
+        addEventListener("keydown", onKeyDown);
+        addEventListener("keyup", onKeyUp);
+
+        init();
+    </script>
+</body>
+
+</html>
