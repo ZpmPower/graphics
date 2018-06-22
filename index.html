@@ -11,6 +11,7 @@
 <body>
     <script src="js/three.js"></script>
 <script src="js/OrbitControls.js"></script>
+    <script src="js/STLLoader.js"></script>
     <script>
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -168,40 +169,85 @@ var cubeMaterials =
         
         
         
-    var EllipseShape = new THREE.Shape();
-    var width = 15, height = 1.5;
-    (function Ellipse(ctx, x,y,w,h){
-     var kappa = 0.5522848;
-     ox = (w/2) * kappa,
-    oy = (h/2) * kappa,
-    xe = x+w,
-    ye = y+h,
-    xm = x + w/2,
-    ym = y+h/2;
-    ctx.moveTo(x,ym);
-    ctx.bezierCurveTo(x,ym-oy,xm-ox,y,xm,y);
-    ctx.bezierCurveTo(xm+ox,y,xe,ym-oy,xe,ym);
-    ctx.bezierCurveTo(xe,ym+oy,xm+ox,ye,xm,ye);
-    ctx.bezierCurveTo(xm-ox,ye,x,ym+oy,x,ym);
+//    var EllipseShape = new THREE.Shape();
+//    var width = 15, height = 1.5;
+//    (function Ellipse(ctx, x,y,w,h){
+//     var kappa = 0.5522848;
+//     ox = (w/2) * kappa,
+//    oy = (h/2) * kappa,
+//    xe = x+w,
+//    ye = y+h,
+//    xm = x + w/2,
+//    ym = y+h/2;
+//    ctx.moveTo(x,ym);
+//    ctx.bezierCurveTo(x,ym-oy,xm-ox,y,xm,y);
+//    ctx.bezierCurveTo(xm+ox,y,xe,ym-oy,xe,ym);
+//    ctx.bezierCurveTo(xe,ym+oy,xm+ox,ye,xm,ye);
+//    ctx.bezierCurveTo(xm-ox,ye,x,ym+oy,x,ym);
+//        
+//     })(EllipseShape, -width/3,-height/3,width,height);
+//        
+//    var extrudeSettings = {
+//	steps: 4,
+//	depth: 2,
+//	bevelEnabled: true,
+//	bevelThickness: 1,
+//	bevelSize: 3,
+//	bevelSegments: 5
+//};
+//    var geometry = new THREE.ExtrudeGeometry( EllipseShape, extrudeSettings );
+//var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: false } );
+//var mesh = new THREE.Mesh( geometry, material ) ;//apple
+//scene.add(mesh);
+//mesh.rotation.z = Math.PI/3;
+//mesh.scale.set(0.01,0.01,0.01);
+//mesh.scale.set(0.03,0.03,0.03);
+//mesh.position.set(0,6,0);
+//        
+//var geometry = new THREE.SphereGeometry( 0.5, 16, 16 );
+//    var material = new THREE.MeshLambertMaterial( {color: 0xffffff, transparent: false} );
+//    var sphere = new THREE.Mesh( geometry, material );
+//        scene.add( sphere );
+//    sphere.position.set(0,5.5,1);
+//
+//var geometry = new THREE.SphereGeometry( 0.5, 16, 16 );
+//    var material = new THREE.MeshLambertMaterial( {color: 0xffffff,  transparent: true} );
+//    var sphere = new THREE.Mesh( geometry, material );
+//        scene.add( sphere );
+//    sphere.position.set(0.7,5.5,1);
+      var loader = new THREE.STLLoader();
+            loader.load( 'img/Apple_logo.STL', function ( geometry ) {
+
+                var material = new THREE.MeshPhongMaterial( { color: 'white' } );
+
+                var mesh = new THREE.Mesh( geometry, material );
+                console.log( mesh);
+                mesh.scale.set(0.01,0.01,0.01);
+                mesh.position.set(-0.4,4.8,1);
+                scene.add( mesh );
+                } );
         
-     })(EllipseShape, -width/3,-height/3,width,height);
-        
-    var extrudeSettings = {
-	steps: 4,
-	depth: 2,
-	bevelEnabled: true,
-	bevelThickness: 1,
-	bevelSize: 3,
-	bevelSegments: 5
-};
-    var geometry = new THREE.ExtrudeGeometry( EllipseShape, extrudeSettings );
-var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: false } );
-var mesh = new THREE.Mesh( geometry, material ) ;//apple
-scene.add(mesh);
-mesh.rotation.z = Math.PI/3;
-mesh.scale.set(0.01,0.01,0.01);
-mesh.scale.set(0.03,0.03,0.03);
-mesh.position.set(0,6,0);
+    function addLight(){
+                hemisphereLight = new THREE.HemisphereLight(0xaaaaaa,0x000000, .9);
+
+                directionalLight = new THREE.DirectionalLight(0xffffff, .9);
+
+                directionalLight.position.set(150, 350, 350);
+                directionalLight.castShadow = true;
+                directionalLight.shadow.camera.left = -400;
+                directionalLight.shadow.camera.right = 400;
+                directionalLight.shadow.camera.top = 400;
+                directionalLight.shadow.camera.bottom = -400;
+                directionalLight.shadow.camera.near = 1;
+                directionalLight.shadow.camera.far = 1000;
+
+                directionalLight.shadow.mapSize.width = 2048;
+                directionalLight.shadow.mapSize.height = 2048;
+
+                scene.add(hemisphereLight);  
+                scene.add(directionalLight);
+            }
+        addLight();
     var update = function()
     {
         //cube.rotation.x+=0.01;
