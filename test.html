@@ -195,7 +195,7 @@
 
             var geomCockpit = new THREE.CylinderGeometry(10, 40, 200, 4);
             var matCockpit = new THREE.MeshPhongMaterial({
-                color: Colors.red,
+                map:new THREE.TextureLoader().load('img/white.jpeg'),
                 shading: THREE.FlatShading
             });
             var cockpit = new THREE.Mesh(geomCockpit, matCockpit);
@@ -213,7 +213,7 @@
                 shading: THREE.FlatShading
             });
             var engine = new THREE.Mesh(geomEngine, matEngine);
-            engine.position.x = 110;
+            engine.position.x = 120;
             engine.castShadow = true;
             engine.receiveShadow = true;
             this.mesh.add(engine);
@@ -221,7 +221,7 @@
 //             Создаем хвост1
             var geomTailPlane = new THREE.BoxGeometry(25, 40, 5, 1, 1, 1);
             var matTailPlane = new THREE.MeshPhongMaterial({
-                color: Colors.red,
+                map:new THREE.TextureLoader().load('img/red.jpg'),
                 shading: THREE.FlatShading
             });
             var tailPlane = new THREE.Mesh(geomTailPlane, matTailPlane);
@@ -232,7 +232,7 @@
             //хвост2
             var geomTailPlane = new THREE.BoxGeometry(25, 75, 10, 1, 1, 1);
             var matTailPlane = new THREE.MeshPhongMaterial({
-                color: Colors.red,
+                map:new THREE.TextureLoader().load('img/red.jpg'),
                 shading: THREE.FlatShading
             });
             var tailPlane = new THREE.Mesh(geomTailPlane, matTailPlane);
@@ -246,7 +246,7 @@
  //            Создаем крыло 1
             var geomSideWing = new THREE.BoxGeometry(50, 8, 300, 1, 1, 1);
             var matSideWing = new THREE.MeshPhongMaterial({
-                color: Colors.brown,
+                map:new THREE.TextureLoader().load('img/brawntree.jpeg'),
                 shading: THREE.FlatShading
             });
             var sideWing = new THREE.Mesh(geomSideWing, matSideWing);
@@ -260,7 +260,7 @@
             // Создаем крыло 2
             var geomSideWing = new THREE.BoxGeometry(50, 8, 300, 1, 1, 1);
             var matSideWing = new THREE.MeshPhongMaterial({
-                color: Colors.brown,
+                map:new THREE.TextureLoader().load('img/brawntree.jpeg'),
                 shading: THREE.FlatShading
             });
             var sideWing = new THREE.Mesh(geomSideWing, matSideWing);
@@ -272,13 +272,14 @@
             this.mesh.add(sideWing);
 
             this.propeller = new createPropeller().propeller;
+            this.propeller.position.x+=10;
             this.mesh.add(this.propeller);
             
             //wing's connectors 
             //left 
             var geomCockpit = new THREE.CylinderGeometry(5, 5, 60, 30);
             var matCockpit = new THREE.MeshPhongMaterial({
-                color: Colors.red,
+                map:new THREE.TextureLoader().load('img/lightwood.jpg'),
                 shading: THREE.FlatShading
             });
             var cockpit = new THREE.Mesh(geomCockpit, matCockpit);
@@ -311,25 +312,13 @@
             cockpit.position.x+=30;
             this.mesh.add(cockpit);
 
-//            this.leftPropeller = new createPropeller().propeller;
-//            this.leftPropeller.position.set(30, 0, 95);
-//            this.leftPropeller.scale.set(0.65, 0.65, 0.65);
-//            this.mesh.add(this.leftPropeller);
-//
-//            this.rightPropeller = new createPropeller().propeller;
-//            this.rightPropeller.position.set(30, 0, -95);
-//            this.rightPropeller.scale.set(0.65, 0.65, 0.65);
-//            this.mesh.add(this.rightPropeller);
-
-            var geomCabin = new THREE.BoxGeometry(40, 25, 35, 1, 1, 1);
-            var matCabin = new THREE.MeshPhongMaterial({
-                color: Colors.blue,
-                shading: THREE.FlatShading
-            });
-            var cabin = new THREE.Mesh(geomCabin, matCabin);
+            var geometry = new THREE.SphereBufferGeometry(25, 8, 8, 0, 2*Math.PI, 0, 0.5 * Math.PI);
+            var material = new THREE.MeshLambertMaterial( {map:new THREE.TextureLoader().load('img/glass.jpg')} );
+            var cabin = new THREE.Mesh( geometry, material );
             cabin.castShadow = true;
             cabin.receiveShadow = true;
-            cabin.position.set(40, 35, 0);
+            cabin.position.set(67, 28, 0);
+            cabin.rotation.z= Math.PI/25;
             this.mesh.add(cabin);
         };
 
@@ -343,12 +332,10 @@
         }
 
         function loop() {
-            // Вращаем пропеллер, море и небо
-            airplane.propeller.rotation.x += 0.3;
-            //airplane.leftPropeller.rotation.x += 0.3;
-            //airplane.rightPropeller.rotation.x += 0.3;
+            //airplane.propeller.rotation.x += 0.3;
             airplane.mesh.rotation.x += rotationX;
             airplane.mesh.rotation.y += rotationY;
+            airplane.mesh.rotation.z += rotationZ;
             // рендерим сцену
 
             //rotateAirPlaneLeftRight(0);
@@ -389,19 +376,27 @@
         function onKeyDown(e) {
             switch (e.keyCode) {
 
-                case 37: // если нажата клавиша влево
+                case 65: // если нажата клавиша влево
                     //rotateAirPlaneLeftRight(-0.05);
                     rotationX = -0.05;
                     break;
-                case 38: // если нажата клавиша вверх
+                case 87: // если нажата клавиша вверх
                     //rotateAirPlaneTopDown(0.05);
-                    rotationY = 0.05;
+                    rotationZ = 0.05;
                     break;
-                case 39: // если нажата клавиша вправо
+                case 68: // если нажата клавиша вправо
                     //rotateAirPlaneLeftRight(0.05);
                     rotationX = 0.05;
                     break;
-                case 40: // если нажата клавиша вниз
+                case 83: // если нажата клавиша вниз
+                    //rotateAirPlaneTopDown(-0.05);
+                    rotationZ = -0.05;
+                    break;
+                case 90: // если нажата клавиша вправо
+                    //rotateAirPlaneLeftRight(0.05);
+                    rotationY = 0.05;
+                    break;
+                case 88: // если нажата клавиша вниз
                     //rotateAirPlaneTopDown(-0.05);
                     rotationY = -0.05;
                     break;
@@ -411,22 +406,29 @@
         function onKeyUp(e) {
             switch (e.keyCode) {
 
-                case 37: // если нажата клавиша влево
+                case 65: // если нажата клавиша влево
                     //rotateAirPlaneLeftRight(-0.05);
                     rotationX = 0;
                     break;
-                case 38: // если нажата клавиша вверх
+                case 87: // если нажата клавиша вверх
                     //rotateAirPlaneTopDown(0.05);
-                    rotationY = 0;
+                    rotationZ = 0;
                     break;
-                case 39: // если нажата клавиша вправо
+                case 68: // если нажата клавиша вправо
                     //rotateAirPlaneLeftRight(0.05);
                     rotationX = 0;
                     break;
-                case 40: // если нажата клавиша вниз
+                case 83: // если нажата клавиша вниз
                     //rotateAirPlaneTopDown(-0.05);
+                    rotationZ = 0;
+                    break;
+                case 90: // если нажата клавиша вправо
+                    //rotateAirPlaneLeftRight(0.05);
                     rotationY = 0;
                     break;
+                case 88: // если нажата клавиша вниз
+                    //rotateAirPlaneTopDown(-0.05);
+                    rotationY = -0;
             }
         }
 
