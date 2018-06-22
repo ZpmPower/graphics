@@ -212,78 +212,78 @@ outlineMesh.scale.multiplyScalar( 1.05 );
 mesh1.add( outlineMesh );
 //        //0xDB7093
 //
-////mouth
-//var curve = new THREE.QuadraticBezierCurve3(
-//	new THREE.Vector3( -1,2.8,1.76 ),
-//	new THREE.Vector3( 0, 1.8, 2.1 ),
-//	new THREE.Vector3( 1,2.8,1.76 )
-//);
-//
-//var points = curve.getPoints( 100 );
-//var geometry = new THREE.BufferGeometry().setFromPoints( points );
-//
-//var material = new THREE.LineBasicMaterial( { color : 0x6495ED, lineWidth: 100 } );
-//var curveObject = new THREE.Line( geometry, material ); 
-//scene.add(curveObject);
-//        
-//        
-////teeth
-//var EllipseShape1 = new THREE.Shape();
-//var width = 10, height = 5;
-//    (function Ellipse(ctx, x,y,w,h){
-//     var kappa = 0.5522848;
-//     ox = (w/2) * kappa,
-//    oy = (h/2) * kappa,
-//    xe = x+w,
-//    ye = y+h,
-//    xm = x + w/2,
-//    ym = y+h/2;
-//    ctx.moveTo(x,ym);
-//    ctx.bezierCurveTo(x,ym-oy,xm-ox,y,xm,y);
-//    ctx.bezierCurveTo(xm+ox,y,xe,ym-oy,xe,ym);
-//    ctx.bezierCurveTo(xe,ym+oy,xm+ox,ye,xm,ye);
-//    ctx.bezierCurveTo(xm-ox,ye,x,ym+oy,x,ym);
-//        
-//     })(EllipseShape1, -width/2,-height/2,width,height);
-//        
-//    var extrudeSettings = {
-//	steps: 2,
-//	depth: 1,
-//	bevelEnabled: true,
-//	bevelThickness: 1,
-//	bevelSize: 1,
-//	bevelSegments: 1
-//};
-//    
-//geometry = new THREE.ExtrudeGeometry( EllipseShape1, extrudeSettings );
-//var material = new THREE.MeshLambertMaterial( { color: 0xffffff, wireframe: false } );
-//var mesh = new THREE.Mesh( geometry, material ) ;//leftooth
-//scene.add( mesh );
-//mesh.rotation.z= 300;
-//mesh.rotation.x= -60;
-//mesh.scale.set(0.05,0.05,0.05);
-//mesh.position.set(-0.2,2.2,1.87);
-//    
-//var outlineMaterial = new THREE.MeshLambertMaterial( { color: 0x6495ED, side: THREE.BackSide } );
-//outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
-//outlineMesh.scale.multiplyScalar( 1.05 );
-//mesh.add( outlineMesh );
-//
-//        
-//geometry = new THREE.ExtrudeGeometry( EllipseShape1, extrudeSettings );
-//var material = new THREE.MeshLambertMaterial( { color: 0xffffff, wireframe: false } );
-//var mesh = new THREE.Mesh( geometry, material ) ;//righttooth
-//scene.add( mesh );
-//mesh.rotation.z= 300;
-//mesh.rotation.x= -60;
-//mesh.scale.set(0.05,0.05,0.05);
-//mesh.position.set(0.09,2.3,1.85);
-//mesh.scale.multiplyScalar(0.9);
-//        
-//var outlineMaterial = new THREE.MeshLambertMaterial( { color: 0x6495ED, side: THREE.BackSide } );
-//outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
-//outlineMesh.scale.multiplyScalar( 1.05 );
-//mesh.add( outlineMesh );
+//mouth
+var curve = new THREE.QuadraticBezierCurve3(
+	new THREE.Vector3( -1,2.8,1.76 ),
+	new THREE.Vector3( 0, 1.8, 2.1 ),
+	new THREE.Vector3( 1,2.8,1.76 )
+);
+
+var points = curve.getPoints( 100 );
+var geometry = new THREE.BufferGeometry().setFromPoints( points );
+
+var material = new THREE.LineBasicMaterial( { color : 0x6495ED, lineWidth: 100 } );
+var curveObject = new THREE.Line( geometry, material ); 
+scene.add(curveObject);
+        
+        
+//teeth
+var EllipseShape1 = new THREE.Shape();
+var width = 10, height = 5;
+    (function Ellipse(ctx, x,y,w,h){
+     var kappa = 0.5522848;
+     ox = (w/2) * kappa,
+    oy = (h/2) * kappa,
+    xe = x+w,
+    ye = y+h,
+    xm = x + w/2,
+    ym = y+h/2;
+    ctx.moveTo(x,ym);
+    ctx.bezierCurveTo(x,ym-oy,xm-ox,y,xm,y);
+    ctx.bezierCurveTo(xm+ox,y,xe,ym-oy,xe,ym);
+    ctx.bezierCurveTo(xe,ym+oy,xm+ox,ye,xm,ye);
+    ctx.bezierCurveTo(xm-ox,ye,x,ym+oy,x,ym);
+        
+     })(EllipseShape1, -width/2,-height/2,width,height);
+        
+    var extrudeSettings = {
+	steps: 2,
+	depth: 1,
+	bevelEnabled: true,
+	bevelThickness: 1,
+	bevelSize: 1,
+	bevelSegments: 1
+};
+    
+geometry = new THREE.ExtrudeGeometry( EllipseShape1, extrudeSettings );
+var material = new THREE.MeshLambertMaterial( { color: 0xffffff, wireframe: false } );
+var mesh = new THREE.Mesh( geometry, material ) ;//leftooth
+scene.add( mesh );
+mesh.rotation.z= 300;
+mesh.rotation.x= -60;
+mesh.scale.set(0.05,0.05,0.05);
+mesh.position.set(-0.2,2.2,1.87);
+    
+var outlineMaterial = new THREE.MeshLambertMaterial( { color: 0x6495ED, side: THREE.BackSide } );
+outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
+outlineMesh.scale.multiplyScalar( 1.05 );
+mesh.add( outlineMesh );
+
+        
+geometry = new THREE.ExtrudeGeometry( EllipseShape1, extrudeSettings );
+var material = new THREE.MeshLambertMaterial( { color: 0xffffff, wireframe: false } );
+var mesh = new THREE.Mesh( geometry, material ) ;//righttooth
+scene.add( mesh );
+mesh.rotation.z= 300;
+mesh.rotation.x= -60;
+mesh.scale.set(0.05,0.05,0.05);
+mesh.position.set(0.09,2.3,1.85);
+mesh.scale.multiplyScalar(0.9);
+        
+var outlineMaterial = new THREE.MeshLambertMaterial( { color: 0x6495ED, side: THREE.BackSide } );
+outlineMesh = new THREE.Mesh( geometry, outlineMaterial );
+outlineMesh.scale.multiplyScalar( 1.05 );
+mesh.add( outlineMesh );
 
 
         
