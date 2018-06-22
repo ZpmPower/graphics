@@ -49,37 +49,37 @@
     camera.position.z = 6;
     camera.position.y = 2;
         
-//    var geometryDoor = new THREE.BoxGeometry( 0.4, 0.75, 0.01 ); //door
-//    var doorMaterials =
-//    [
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} ), //right
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} ),//left
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} ),//top
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} ),//bottom
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png') } ),//front
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/doorback.png'), side: THREE.DoubleSide} )//back
-//    ];
-//    var materialDoor = new THREE.MeshFaceMaterial( doorMaterials );
-//    var door = new THREE.Mesh( geometryDoor, materialDoor );
-//    scene.add( door );
-//    door.position.set(0,0.38,0.5);
-//        
-//    var geometryWindow = new THREE.BoxGeometry( 0.4, 0.4, 0.01 ); //window
-//    var windowMaterials =
-//    [
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ), //right
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ),//top
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ),//left
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ),//bottom
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ),//front
-//        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} )//back
-//    ];
-//    var materialWindow = new THREE.MeshFaceMaterial( windowMaterials );
-//    var window1 = new THREE.Mesh( geometryWindow, materialWindow );
-//    scene.add( window1 );
-//    window1.rotation.y=Math.PI/2;
-//    window1.position.set(-0.5,0.5,0);
-//    
+    var geometryDoor = new THREE.BoxGeometry( 0.4, 0.75, 0.01 ); //door
+    var doorMaterials =
+    [
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} ), //right
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} ),//left
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} ),//top
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png'), side: THREE.DoubleSide} ),//bottom
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/door.png') } ),//front
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/doorback.png'), side: THREE.DoubleSide} )//back
+    ];
+    var materialDoor = new THREE.MeshFaceMaterial( doorMaterials );
+    var door = new THREE.Mesh( geometryDoor, materialDoor );
+    scene.add( door );
+    door.position.set(0,0.38,0.5);
+        
+    var geometryWindow = new THREE.BoxGeometry( 0.4, 0.4, 0.01 ); //window
+    var windowMaterials =
+    [
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ), //right
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ),//top
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ),//left
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ),//bottom
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} ),//front
+        new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('img/window.jpeg'), side: THREE.DoubleSide} )//back
+    ];
+    var materialWindow = new THREE.MeshFaceMaterial( windowMaterials );
+    var window1 = new THREE.Mesh( geometryWindow, materialWindow );
+    scene.add( window1 );
+    window1.rotation.y=Math.PI/2;
+    window1.position.set(-0.5,0.5,0);
+    
 //var geometryRoof = new THREE.CylinderGeometry( 0.3, 0.95, 1.1, 4 );
 //var roofMaterials =
 //    [
