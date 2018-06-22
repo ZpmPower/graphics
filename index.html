@@ -168,40 +168,40 @@ var cubeMaterials =
         
         
         
-//    var EllipseShape = new THREE.Shape();
-//    var width = 15, height = 1.5;
-//    (function Ellipse(ctx, x,y,w,h){
-//     var kappa = 0.5522848;
-//     ox = (w/2) * kappa,
-//    oy = (h/2) * kappa,
-//    xe = x+w,
-//    ye = y+h,
-//    xm = x + w/2,
-//    ym = y+h/2;
-//    ctx.moveTo(x,ym);
-//    ctx.bezierCurveTo(x,ym-oy,xm-ox,y,xm,y);
-//    ctx.bezierCurveTo(xm+ox,y,xe,ym-oy,xe,ym);
-//    ctx.bezierCurveTo(xe,ym+oy,xm+ox,ye,xm,ye);
-//    ctx.bezierCurveTo(xm-ox,ye,x,ym+oy,x,ym);
-//        
-//     })(EllipseShape, -width/3,-height/3,width,height);
-//        
-//    var extrudeSettings = {
-//	steps: 4,
-//	depth: 2,
-//	bevelEnabled: true,
-//	bevelThickness: 1,
-//	bevelSize: 3,
-//	bevelSegments: 5
-//};
-//    var geometry = new THREE.ExtrudeGeometry( EllipseShape, extrudeSettings );
-//var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: false } );
-//var mesh = new THREE.Mesh( geometry, material ) ;//apple
-//scene.add(mesh);
-//mesh.rotation.z = Math.PI/3;
-//mesh.scale.set(0.01,0.01,0.01);
-//mesh.scale.set(0.03,0.03,0.03);
-//mesh.position.set(0,6,0);
+    var EllipseShape = new THREE.Shape();
+    var width = 15, height = 1.5;
+    (function Ellipse(ctx, x,y,w,h){
+     var kappa = 0.5522848;
+     ox = (w/2) * kappa,
+    oy = (h/2) * kappa,
+    xe = x+w,
+    ye = y+h,
+    xm = x + w/2,
+    ym = y+h/2;
+    ctx.moveTo(x,ym);
+    ctx.bezierCurveTo(x,ym-oy,xm-ox,y,xm,y);
+    ctx.bezierCurveTo(xm+ox,y,xe,ym-oy,xe,ym);
+    ctx.bezierCurveTo(xe,ym+oy,xm+ox,ye,xm,ye);
+    ctx.bezierCurveTo(xm-ox,ye,x,ym+oy,x,ym);
+        
+     })(EllipseShape, -width/3,-height/3,width,height);
+        
+    var extrudeSettings = {
+	steps: 4,
+	depth: 2,
+	bevelEnabled: true,
+	bevelThickness: 1,
+	bevelSize: 3,
+	bevelSegments: 5
+};
+    var geometry = new THREE.ExtrudeGeometry( EllipseShape, extrudeSettings );
+var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: false } );
+var mesh = new THREE.Mesh( geometry, material ) ;//apple
+scene.add(mesh);
+mesh.rotation.z = Math.PI/3;
+mesh.scale.set(0.01,0.01,0.01);
+mesh.scale.set(0.03,0.03,0.03);
+mesh.position.set(0,6,0);
     var update = function()
     {
         //cube.rotation.x+=0.01;
